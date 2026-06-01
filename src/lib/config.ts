@@ -6,18 +6,15 @@ export const CONFIG = {
   tagline: "A smarter calculator with a paper tape memory.",
   
   // Placeholders — update before launch
-  launchDate: "[Insert launch date]",
-  supportEmail: "[Insert support email]",
+  launchDate: "1 June 2026",
+  supportEmail: "arowoduyestrategy@gmail.com",
   websiteUrl: "[Insert website URL]",
-  governingJurisdiction: "[Insert governing jurisdiction]",
-  companyLegalName: "[Insert company/developer legal name]",
+  governingJurisdiction: "Nigeria",
+  companyLegalName: "Arowoduye Prime Strategy LTD",
   
   // App Store links — update when available
   appStoreUrl: "#",
-  googlePlayUrl: "#",
-  
-  // Social / other links
-  twitterUrl: "#",
+  googlePlayUrl: "#"
 } as const;
 
 export type Config = typeof CONFIG;
