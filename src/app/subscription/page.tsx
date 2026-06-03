@@ -1,26 +1,17 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import ScreenshotPhone from "@/components/ScreenshotPhone";
+import DownloadActions from "@/components/DownloadActions";
 import { CONFIG } from "@/lib/config";
+import { SCREENSHOTS } from "@/lib/screenshots";
 
 export const metadata: Metadata = {
-  title: `Subscriptions — ${CONFIG.appName}`,
+  title: "Subscription and trial",
   description:
-    "Learn about EmTape's 15-day free trial, subscription plans, cancellation, and restore purchase.",
-  openGraph: {
-    title: `Subscriptions — ${CONFIG.appName}`,
-    description:
-      "Learn about EmTape's 15-day free trial, subscription plans, cancellation, and restore purchase.",
-    type: "website",
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: `Subscriptions — ${CONFIG.appName}`,
-    description:
-      "Learn about EmTape's 15-day free trial, subscription plans, cancellation, and restore purchase.",
-  },
+    "Understand EMTape trial access, subscription handling, restore purchases, and plan management.",
 };
 
-function SubscriptionCard({
+function PlanCard({
   title,
   children,
 }: {
@@ -28,130 +19,105 @@ function SubscriptionCard({
   children: React.ReactNode;
 }) {
   return (
-    <div className="rounded-2xl bg-surface border border-border/60 p-6 md:p-8">
-      <h2 className="text-lg font-semibold tracking-tight mb-4">{title}</h2>
-      <div className="text-sm leading-relaxed text-muted space-y-3">{children}</div>
+    <div className="card-surface rounded-[1.75rem] p-6 md:p-7">
+      <h2 className="text-lg font-semibold tracking-tight">{title}</h2>
+      <div className="mt-4 space-y-3 text-sm leading-7 text-muted">{children}</div>
     </div>
   );
 }
 
 export default function SubscriptionPage() {
   return (
-    <div className="mx-auto max-w-6xl px-5 md:px-8 py-12 md:py-20">
-      <div className="mx-auto max-w-3xl text-center mb-14">
-        <h1 className="text-3xl font-bold tracking-tight sm:text-4xl">Subscriptions</h1>
-        <p className="mt-4 text-lg text-muted">
-          Full access during your free trial. Subscription required after trial.
+    <div className="mx-auto max-w-7xl px-5 py-12 md:px-8 md:py-20">
+      <div className="grid items-start gap-10 lg:grid-cols-[1fr_0.88fr]">
+        <div>
+          <div className="section-kicker">Plan details</div>
+          <h1 className="mt-5 text-4xl font-bold tracking-tight sm:text-5xl">
+            Clear subscription language for what the app already shows.
+          </h1>
+          <p className="mt-5 max-w-3xl text-lg leading-8 text-muted">
+            EMTape is positioned around saved calculations, templates, folders, export tools, and
+            settings-based control. The current build shows a {CONFIG.featuredPlanName.toLowerCase()}
+            plan, restore purchases, and unlimited saved histories, tape rows per history, and folders.
+          </p>
+
+          <div className="mt-8 grid gap-5 md:grid-cols-2">
+            <PlanCard title={`${CONFIG.trialDays}-day trial`}>
+              <p>
+                New users may receive a {CONFIG.trialDays}-day trial before subscription access rules
+                apply.
+              </p>
+              <p>
+                The exact store flow, pricing, and renewal terms shown at checkout control the purchase.
+              </p>
+            </PlanCard>
+
+            <PlanCard title="Current in-app plan view">
+              <p>
+                The settings screen currently shows a <strong>{CONFIG.featuredPlanName}</strong> plan
+                and highlights unlimited saved histories, tape rows, and folders.
+              </p>
+            </PlanCard>
+
+            <PlanCard title="Store-managed billing">
+              <p>
+                Apple App Store and Google Play handle billing, renewals, cancellations, and refund
+                rules for their respective purchases.
+              </p>
+              <p>Deleting EMTape does not automatically cancel a subscription.</p>
+            </PlanCard>
+
+            <PlanCard title="Restore purchases">
+              <p>
+                If you reinstall the app or move to a new device, use the restore purchases option in
+                settings so EMTape can re-check your store entitlement.
+              </p>
+            </PlanCard>
+          </div>
+
+          <div className="mt-10">
+            <DownloadActions />
+          </div>
+
+          <p className="mt-5 text-sm leading-7 text-muted">
+            If store links are not live on this site yet, use support to request access or ask about
+            rollout timing.
+          </p>
+        </div>
+
+        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-1">
+          <ScreenshotPhone
+            src={SCREENSHOTS.settingsPlanLegal.src}
+            alt={SCREENSHOTS.settingsPlanLegal.alt}
+            caption="The plan area shows current plan, restore purchases, and support plus legal links."
+          />
+          <ScreenshotPhone
+            src={SCREENSHOTS.documentsHome.src}
+            alt={SCREENSHOTS.documentsHome.alt}
+            caption="The workspace also surfaces the current plan status near the top of the app."
+          />
+        </div>
+      </div>
+
+      <div className="mt-14 rounded-[2rem] border border-border/70 bg-surface p-8 shadow-[0_18px_50px_rgba(19,33,63,0.08)] md:p-10">
+        <h2 className="text-2xl font-semibold tracking-tight">Need help with a subscription issue?</h2>
+        <p className="mt-4 max-w-3xl text-base leading-8 text-muted">
+          If purchase access, renewals, or restore flow do not look right, start on the support page
+          and include your device, app version, and the store you used.
         </p>
-      </div>
-
-      <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3 mb-16">
-        <SubscriptionCard title="15-Day Free Trial">
-          <p>
-            New users get a 15-day free trial. During the trial, everything is unlocked and the
-            full app experience is available.
-          </p>
-          <p>
-            There are no confusing &quot;Pro features during trial&quot; restrictions. All available
-            features are included.
-          </p>
-        </SubscriptionCard>
-
-        <SubscriptionCard title="Subscription Required After Trial">
-          <p>
-            After the 15-day free trial ends, an active subscription is required to continue
-            using the full app.
-          </p>
-          <p>
-            Subscription management, billing, cancellation, refunds, and renewals are handled
-            by Apple App Store and/or Google Play, depending on where you downloaded the app.
-          </p>
-        </SubscriptionCard>
-
-        <SubscriptionCard title="RevenueCat">
-          <p>
-            RevenueCat is used only to manage subscriptions, entitlement status, purchase
-            validation, and purchase restoration.
-          </p>
-          <p>
-            RevenueCat does not process your payment directly. All payments are handled by
-            Apple or Google.
-          </p>
-        </SubscriptionCard>
-
-        <SubscriptionCard title="Cancel Anytime">
-          <p>
-            You can cancel your subscription at any time through your app store account
-            settings.
-          </p>
-          <p>
-            <strong>iOS:</strong> Settings → Apple ID → Subscriptions → EmTape → Cancel
-            Subscription.
-          </p>
-          <p>
-            <strong>Android:</strong> Google Play → Payments & subscriptions → Subscriptions →
-            EmTape → Cancel Subscription.
-          </p>
-        </SubscriptionCard>
-
-        <SubscriptionCard title="Restore Purchase">
-          <p>
-            If you reinstall the app or switch devices, you can restore your purchase inside
-            EmTape where supported.
-          </p>
-          <p>
-            Make sure you are signed in with the same Apple ID or Google account used for the
-            original purchase.
-          </p>
-        </SubscriptionCard>
-
-        <SubscriptionCard title="Refunds">
-          <p>
-            Refunds are handled by Apple App Store or Google Play according to their respective
-            policies.
-          </p>
-          <p>
-            We do not directly process app store payments and may not be able to issue refunds
-            directly.
-          </p>
-        </SubscriptionCard>
-      </div>
-
-      <div className="mx-auto max-w-2xl text-center">
-        <p className="text-muted mb-6">
-          Have questions? Visit our{" "}
+        <div className="mt-8 flex flex-wrap gap-3">
           <Link
             href="/support"
-            className="text-accent hover:text-accent-hover underline underline-offset-3"
+            className="inline-flex items-center justify-center rounded-full bg-foreground px-6 py-3 text-sm font-semibold text-background transition hover:bg-foreground/90"
           >
-            Support page
-          </Link>{" "}
-          or{" "}
-          <Link
-            href="/contact"
-            className="text-accent hover:text-accent-hover underline underline-offset-3"
-          >
-            contact us
+            Go to support
           </Link>
-          .
-        </p>
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-          <a
-            href={CONFIG.appStoreUrl}
-            className="inline-flex items-center justify-center rounded-xl bg-foreground px-7 py-3.5 text-base font-semibold text-background shadow-sm hover:bg-foreground/90 transition-colors"
-            target="_blank"
-            rel="noopener noreferrer"
+          <Link
+            href="/terms"
+            className="inline-flex items-center justify-center rounded-full border border-border px-6 py-3 text-sm font-semibold text-foreground transition hover:bg-surface-elevated"
           >
-            Download on the App Store
-          </a>
-          <a
-            href={CONFIG.googlePlayUrl}
-            className="inline-flex items-center justify-center rounded-xl border border-border px-7 py-3.5 text-base font-medium text-foreground hover:bg-surface transition-colors"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Get it on Google Play
-          </a>
+            Read terms of use
+          </Link>
         </div>
       </div>
     </div>

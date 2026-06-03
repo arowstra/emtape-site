@@ -1,323 +1,477 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { CONFIG } from "@/lib/config";
-import AppMockup from "@/components/AppMockup";
+import DownloadActions from "@/components/DownloadActions";
 import FeatureCard from "@/components/FeatureCard";
+import ScreenshotPhone from "@/components/ScreenshotPhone";
+import BrandMark from "@/components/BrandMark";
+import { CONFIG } from "@/lib/config";
+import { SCREENSHOTS } from "@/lib/screenshots";
 
 export const metadata: Metadata = {
-  title: `${CONFIG.appName} — Smart Paper Tape Calculator`,
+  title: "Calculator documents and finance templates",
   description:
-    "EmTape is a modern calculator with a paper tape workflow for reviewing, editing, and continuing everyday calculations.",
+    "EmTape is a tape-first calculator workspace with saved documents, reusable templates, finance shortcuts, export controls, and privacy-aware settings.",
   openGraph: {
-    title: `${CONFIG.appName} — Smart Paper Tape Calculator`,
+    title: `${CONFIG.appName} | Calculator documents and finance templates`,
     description:
-      "EmTape is a modern calculator with a paper tape workflow for reviewing, editing, and continuing everyday calculations.",
+      "EmTape is a tape-first calculator workspace with saved documents, reusable templates, finance shortcuts, export controls, and privacy-aware settings.",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: `${CONFIG.appName} — Smart Paper Tape Calculator`,
+    title: `${CONFIG.appName} | Calculator documents and finance templates`,
     description:
-      "EmTape is a modern calculator with a paper tape workflow for reviewing, editing, and continuing everyday calculations.",
+      "EmTape is a tape-first calculator workspace with saved documents, reusable templates, finance shortcuts, export controls, and privacy-aware settings.",
   },
 };
 
-function StoreBadge({ store }: { store: "apple" | "google" }) {
-  const isApple = store === "apple";
+const featureCards = [
+  {
+    eyebrow: "Workspace",
+    title: "Save calculations as real documents",
+    description:
+      "Keep a searchable list of calculations, folders, pinned work, recent items, and trash instead of losing context after every total.",
+    icon: (
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+        <path d="M14 2v6h6" />
+        <path d="M8 13h8" />
+        <path d="M8 17h6" />
+      </svg>
+    ),
+  },
+  {
+    eyebrow: "Tape",
+    title: "Work line by line, not result by result",
+    description:
+      "Edit rows, continue from totals, handle positive and negative balances, and keep the full working visible while you type.",
+    icon: (
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+        <path d="M8 6h13" />
+        <path d="M8 12h13" />
+        <path d="M8 18h13" />
+        <path d="M3 6h.01" />
+        <path d="M3 12h.01" />
+        <path d="M3 18h.01" />
+      </svg>
+    ),
+  },
+  {
+    eyebrow: "Templates",
+    title: "Turn recurring math into reusable layouts",
+    description:
+      "Build templates for sales, budgets, rent, debt repayment, salaries, and other repeat calculations so you can start from structure instead of blank tape.",
+    icon: (
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+        <path d="M4 6h16" />
+        <path d="M4 12h16" />
+        <path d="M4 18h10" />
+        <path d="M18 16v4" />
+        <path d="M16 18h4" />
+      </svg>
+    ),
+  },
+  {
+    eyebrow: "Finance",
+    title: "Jump into common money tools fast",
+    description:
+      "Open shortcuts for discount, tax, markup, profit margin, commission, percentage change, split payment, and loan-style calculations from inside the calculator flow.",
+    icon: (
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+        <path d="M12 1v22" />
+        <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
+      </svg>
+    ),
+  },
+  {
+    eyebrow: "Export",
+    title: "Control how polished results leave the app",
+    description:
+      "Choose PDF style, include or hide expressions, set header and footer text, and manage backup and restore from one export settings area.",
+    icon: (
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+        <path d="m7 10 5 5 5-5" />
+        <path d="M12 15V3" />
+      </svg>
+    ),
+  },
+  {
+    eyebrow: "Privacy",
+    title: "Keep settings, permissions, and legal controls visible",
+    description:
+      "Theme, density, keypad behavior, storage, privacy options, subscriptions, restore purchases, and legal documents all live in the app settings instead of being hidden.",
+    icon: (
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z" />
+      </svg>
+    ),
+  },
+];
+
+function SnapshotSection({
+  kicker,
+  title,
+  body,
+  bullets,
+  primary,
+  secondary,
+  reverse = false,
+}: {
+  kicker: string;
+  title: string;
+  body: string;
+  bullets: string[];
+  primary: { src: (typeof SCREENSHOTS)[keyof typeof SCREENSHOTS]["src"]; alt: string; caption: string };
+  secondary: { src: (typeof SCREENSHOTS)[keyof typeof SCREENSHOTS]["src"]; alt: string; caption: string };
+  reverse?: boolean;
+}) {
   return (
-    <a
-      href={isApple ? CONFIG.appStoreUrl : CONFIG.googlePlayUrl}
-      className="inline-flex items-center gap-2.5 rounded-xl bg-foreground px-5 py-3 text-background shadow-sm hover:bg-foreground/90 transition-colors"
-      target="_blank"
-      rel="noopener noreferrer"
-    >
-      {isApple ? (
-        <svg width="20" height="24" viewBox="0 0 24 24" fill="currentColor">
-          <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.21-1.96 1.07-3.11-1.05.05-2.31.71-3.06 1.64-.68.84-1.27 2.18-1.11 3.29 1.19.09 2.39-.6 3.1-1.82z" />
-        </svg>
-      ) : (
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
-          <path d="M3.609 1.814L13.792 12 3.61 22.186a.996.996 0 01-.61-.92V2.734a1 1 0 01.609-.92zm10.89 10.893l2.302 2.302-10.937 6.333 8.635-8.635zm3.199-3.198l2.807 1.626a1 1 0 010 1.73l-2.808 1.626L15.206 12l2.492-2.491zM5.864 2.658L16.8 8.99l-2.302 2.302-8.634-8.634z" />
-        </svg>
-      )}
-      <div className="text-left">
-        <div className="text-[10px] uppercase tracking-wider opacity-80 leading-none">
-          {isApple ? "Download on the" : "Get it on"}
+    <section className="mx-auto max-w-7xl px-5 py-18 md:px-8 md:py-24">
+      <div className={`grid items-center gap-10 lg:grid-cols-[1.05fr_0.95fr] ${reverse ? "lg:[&>*:first-child]:order-2 lg:[&>*:last-child]:order-1" : ""}`}>
+        <div>
+          <div className="section-kicker">{kicker}</div>
+          <h2 className="mt-5 max-w-xl text-3xl font-bold tracking-tight sm:text-4xl">{title}</h2>
+          <p className="mt-5 max-w-xl text-lg leading-8 text-muted">{body}</p>
+          <ul className="mt-8 space-y-3 text-sm leading-7 text-muted">
+            {bullets.map((bullet) => (
+              <li key={bullet} className="flex gap-3">
+                <span className="mt-2 h-2 w-2 rounded-full bg-accent" />
+                <span>{bullet}</span>
+              </li>
+            ))}
+          </ul>
         </div>
-        <div className="text-sm font-semibold leading-tight">
-          {isApple ? "App Store" : "Google Play"}
+
+        <div className="grid gap-6 sm:grid-cols-2">
+          <ScreenshotPhone src={primary.src} alt={primary.alt} caption={primary.caption} />
+          <ScreenshotPhone src={secondary.src} alt={secondary.alt} caption={secondary.caption} className="sm:mt-14" />
         </div>
       </div>
-    </a>
+    </section>
   );
 }
 
 export default function HomePage() {
-  const features = [
-    {
-      icon: (
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-          <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z" />
-          <polyline points="14 2 14 8 20 8" />
-          <line x1="16" y1="13" x2="8" y2="13" />
-          <line x1="16" y1="17" x2="8" y2="17" />
-          <polyline points="10 9 9 9 8 9" />
-        </svg>
-      ),
-      title: "Paper tape workflow",
-      description:
-        "Review your calculation steps instead of losing context after every result.",
-    },
-    {
-      icon: (
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-          <polyline points="23 4 23 10 17 10" />
-          <path d="M20.49 15a9 9 0 11-2.12-9.36L23 10" />
-        </svg>
-      ),
-      title: "Continue from your result",
-      description:
-        "Keep working from a total without starting from scratch.",
-    },
-    {
-      icon: (
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-          <circle cx="12" cy="12" r="10" />
-          <polyline points="12 6 12 12 16 14" />
-        </svg>
-      ),
-      title: "History that makes sense",
-      description:
-        "Save and revisit previous calculations when supported by the app.",
-    },
-    {
-      icon: (
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-          <line x1="12" y1="1" x2="12" y2="23" />
-          <path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6" />
-        </svg>
-      ),
-      title: "Built for everyday money math",
-      description:
-        "Useful for shopping, business totals, school calculations, estimates, budgeting, and quick arithmetic.",
-    },
-    {
-      icon: (
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-          <rect x="2" y="7" width="20" height="14" rx="2" ry="2" />
-          <path d="M16 21V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v16" />
-        </svg>
-      ),
-      title: "Finance tools and templates",
-      description:
-        "Include helpful premium finance tools/templates where available.",
-    },
-    {
-      icon: (
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-          <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
-          <path d="M7 11V7a5 5 0 0110 0v4" />
-        </svg>
-      ),
-      title: "Private by design",
-      description:
-        "No ads, no selling of personal data, and no unnecessary tracking.",
-    },
-  ];
-
   return (
     <div className="flex flex-col">
-      {/* Hero Section */}
       <section className="relative overflow-hidden">
-        <div className="mx-auto max-w-6xl px-5 md:px-8 py-20 md:py-32">
-          <div className="grid items-center gap-12 md:grid-cols-2 md:gap-16">
-            <div className="flex flex-col items-center text-center md:items-start md:text-left">
-              <h1 className="max-w-lg text-4xl font-bold tracking-tight text-foreground sm:text-5xl md:text-6xl leading-[1.1]">
-                {CONFIG.appName} —{" "}
-                <span className="text-muted">a smarter calculator with a paper tape memory.</span>
+        <div className="mx-auto max-w-7xl px-5 pb-18 pt-10 md:px-8 md:pb-26 md:pt-16">
+          <div className="grid items-center gap-12 lg:grid-cols-[0.95fr_1.05fr]">
+            <div>
+              <div className="section-kicker">
+                <BrandMark size={24} />
+                EMTape calculator app
+              </div>
+              <h1 className="mt-6 max-w-3xl text-5xl font-bold tracking-[-0.05em] text-foreground sm:text-6xl lg:text-7xl">
+                The calculator that keeps the whole working, not just the answer.
               </h1>
-              <p className="mt-6 max-w-md text-lg leading-relaxed text-muted">
-                EmTape helps you calculate, review, edit, and continue your work with a clean
-                tape-style calculator built for everyday arithmetic, business, school, and
-                personal finance calculations.
+              <p className="mt-6 max-w-2xl text-lg leading-8 text-muted sm:text-xl">
+                EmTape turns calculations into saved documents you can search, review, pin, reuse,
+                export, and keep organized with folders, templates, finance tools, and settings that
+                match real day-to-day money work.
               </p>
-              <div className="mt-8 flex flex-col sm:flex-row gap-3">
-                <StoreBadge store="apple" />
-                <StoreBadge store="google" />
-              </div>
-              <div className="mt-6 flex items-center gap-2 text-sm text-muted">
-                <span className="inline-block h-2 w-2 rounded-full bg-green-500" />
-                <span className="font-medium">15-day free trial.</span>
-                <span>Full access during trial. Subscription required after trial.</span>
-              </div>
-              <div className="mt-4">
-                <Link
-                  href="/privacy"
-                  className="text-sm font-medium text-accent hover:text-accent-hover underline underline-offset-4"
-                >
-                  View Privacy Policy
-                </Link>
-              </div>
-            </div>
-            <div className="flex justify-center">
-              <AppMockup />
-            </div>
-          </div>
-        </div>
-      </section>
 
-      {/* Product Visual / Tape Demo */}
-      <section className="bg-surface border-y border-border/60">
-        <div className="mx-auto max-w-6xl px-5 md:px-8 py-20 md:py-28">
-          <div className="mx-auto max-w-3xl text-center mb-14">
-            <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
-              See your calculations clearly.
-            </h2>
-            <p className="mt-4 text-lg text-muted">
-              Every line is visible. Every step is reviewable. Work with confidence.
-            </p>
-          </div>
+              <div className="mt-8">
+                <DownloadActions />
+              </div>
 
-          <div className="mx-auto max-w-2xl">
-            <div className="rounded-2xl bg-background border border-border/60 shadow-lg overflow-hidden">
-              {/* Mock tape header */}
-              <div className="flex items-center gap-2 px-5 py-3 border-b border-border/60 bg-surface/50">
-                <div className="h-3 w-3 rounded-full bg-red-400/80" />
-                <div className="h-3 w-3 rounded-full bg-amber-400/80" />
-                <div className="h-3 w-3 rounded-full bg-green-400/80" />
-                <span className="ml-2 text-xs font-medium text-muted">Tape</span>
-              </div>
-              {/* Mock tape lines */}
-              <div className="divide-y divide-border/40">
-                {[
-                  { expr: "2,450.00 + 1,180.50", res: "3,630.50" },
-                  { expr: "3,630.50 × 1.08", res: "3,920.94" },
-                  { expr: "3,920.94 − 500.00", res: "3,420.94", active: true },
-                ].map((line, i) => (
-                  <div
-                    key={i}
-                    className={`flex items-center justify-between px-5 py-4 tape-line ${
-                      line.active
-                        ? "bg-accent/5 font-semibold text-foreground"
-                        : "text-muted"
-                    }`}
-                  >
-                    <span className="text-sm">{line.expr}</span>
-                    <span className={`text-sm ${line.active ? "text-accent" : ""}`}>
-                      = {line.res}
-                    </span>
-                  </div>
-                ))}
-              </div>
-              {/* Input area */}
-              <div className="px-5 py-4 border-t border-border/60 bg-surface/30">
-                <div className="text-right text-2xl font-light tape-line text-foreground">
-                  3,420.94 +{" "}
-                  <span className="animate-pulse">|</span>
+              <div className="mt-8 grid gap-3 text-sm text-muted sm:grid-cols-2">
+                <div className="rounded-2xl border border-border/70 bg-surface/90 px-4 py-3">
+                  <span className="block text-[11px] font-bold uppercase tracking-[0.18em] text-accent">
+                    Trial
+                  </span>
+                  <span className="mt-1 block">
+                    {CONFIG.trialDays}-day full-access trial before subscription access rules apply.
+                  </span>
+                </div>
+                <div className="rounded-2xl border border-border/70 bg-surface/90 px-4 py-3">
+                  <span className="block text-[11px] font-bold uppercase tracking-[0.18em] text-accent">
+                    Real product
+                  </span>
+                  <span className="mt-1 block">
+                    Every preview on this page is from the current EMTape app build, not a fake mockup.
+                  </span>
                 </div>
               </div>
             </div>
+
+            <div className="grid gap-6 sm:grid-cols-2">
+              <ScreenshotPhone
+                src={SCREENSHOTS.documentsHome.src}
+                alt={SCREENSHOTS.documentsHome.alt}
+                caption="Documents workspace with search, folders, pinned and recent filters."
+                priority
+              />
+              <ScreenshotPhone
+                src={SCREENSHOTS.tapeDebtRepayment.src}
+                alt={SCREENSHOTS.tapeDebtRepayment.alt}
+                caption="Editable tape with row-by-row finance calculations."
+                className="sm:mt-16"
+                priority
+              />
+              <ScreenshotPhone
+                src={SCREENSHOTS.financeTools.src}
+                alt={SCREENSHOTS.financeTools.alt}
+                caption="Finance shortcuts open directly from the calculator keypad."
+              />
+              <ScreenshotPhone
+                src={SCREENSHOTS.settingsAppearance.src}
+                alt={SCREENSHOTS.settingsAppearance.alt}
+                caption="Appearance, keypad, currency, and note styling live in settings."
+                className="sm:-mt-10"
+              />
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Features Section */}
-      <section className="mx-auto max-w-6xl px-5 md:px-8 py-20 md:py-28">
-        <div className="mx-auto max-w-3xl text-center mb-14">
-          <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
-            Built for real work.
+      <section className="mx-auto max-w-7xl px-5 py-8 md:px-8">
+        <div className="grid gap-4 md:grid-cols-3">
+          <div className="card-surface rounded-[1.75rem] px-5 py-5">
+            <div className="text-[11px] font-bold uppercase tracking-[0.18em] text-accent">Documents</div>
+            <p className="mt-2 text-sm leading-7 text-muted">
+              Save calculations as named records with visible totals, timestamps, line counts, and folder status.
+            </p>
+          </div>
+          <div className="card-surface rounded-[1.75rem] px-5 py-5">
+            <div className="text-[11px] font-bold uppercase tracking-[0.18em] text-accent">Templates</div>
+            <p className="mt-2 text-sm leading-7 text-muted">
+              Reuse debt repayment, daily sales, salary, rent, shopping, and custom layouts without rebuilding the tape.
+            </p>
+          </div>
+          <div className="card-surface rounded-[1.75rem] px-5 py-5">
+            <div className="text-[11px] font-bold uppercase tracking-[0.18em] text-accent">Settings</div>
+            <p className="mt-2 text-sm leading-7 text-muted">
+              Control theme, accent, export output, storage, subscription access, privacy, and legal surfaces from one place.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section className="mx-auto max-w-7xl px-5 py-18 md:px-8 md:py-24">
+        <div className="mb-12 max-w-3xl">
+          <div className="section-kicker">Why it is different</div>
+          <h2 className="mt-5 text-3xl font-bold tracking-tight sm:text-4xl">
+            EMTape behaves like a finance notebook wrapped around a calculator.
           </h2>
-          <p className="mt-4 text-lg text-muted">
-            A calculator designed around how you actually think with numbers.
+          <p className="mt-4 text-lg leading-8 text-muted">
+            The product is not just a keypad with a tiny history strip. It combines calculation tape,
+            saved documents, reusable templates, finance shortcuts, export preferences, and subscription
+            controls into one workflow.
           </p>
         </div>
-        <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-          {features.map((f) => (
-            <FeatureCard key={f.title} {...f} />
+
+        <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
+          {featureCards.map((feature) => (
+            <FeatureCard key={feature.title} {...feature} />
           ))}
         </div>
       </section>
 
-      {/* Free Trial Section */}
-      <section className="bg-surface border-y border-border/60">
-        <div className="mx-auto max-w-6xl px-5 md:px-8 py-20 md:py-28">
-          <div className="mx-auto max-w-2xl text-center">
-            <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
-              Try everything for 15 days.
+      <SnapshotSection
+        kicker="Workspace flow"
+        title="Start from documents, not from an empty calculator every time."
+        body="The home workspace already shows how EMTape is meant to be used: create a calculation, drop it into folders, search by title or totals, pin important work, and revisit saved histories instead of copying numbers into notes."
+        bullets={[
+          "Named calculations keep a visible total, timestamp, line count, and folder assignment.",
+          "Search reaches titles, lines, expressions, and totals from the main workspace.",
+          "Filters for all, pinned, recent, trash, and sort help when the notebook gets busy.",
+        ]}
+        primary={{
+          src: SCREENSHOTS.documentsHome.src,
+          alt: SCREENSHOTS.documentsHome.alt,
+          caption: "Home workspace with search, folder filters, and quick actions.",
+        }}
+        secondary={{
+          src: SCREENSHOTS.documentsList.src,
+          alt: SCREENSHOTS.documentsList.alt,
+          caption: "Document cards keep totals and tape length visible at a glance.",
+        }}
+      />
+
+      <div className="border-y border-border/70 bg-surface/45">
+        <SnapshotSection
+          kicker="Tape editing"
+          title="Keep the arithmetic visible while the keypad stays live."
+          body="The main calculator screen is built around editable rows and running totals, which makes tasks like debt repayment, wages, deductions, and negative balances easier to reason through without restarting from scratch."
+          bullets={[
+            "Enter values line by line and see the running result update inside the same document.",
+            "Use light or dark mode while keeping the tape readable and color-coded.",
+            "Negative results are clearly emphasized instead of disappearing into a generic result bar.",
+          ]}
+          primary={{
+            src: SCREENSHOTS.tapeDebtRepayment.src,
+            alt: SCREENSHOTS.tapeDebtRepayment.alt,
+            caption: "Debt repayment example with opening balance, payment, and interest.",
+          }}
+          secondary={{
+            src: SCREENSHOTS.tapeNegativeTotal.src,
+            alt: SCREENSHOTS.tapeNegativeTotal.alt,
+            caption: "Negative totals stay obvious and editable inside the same tape.",
+          }}
+          reverse
+        />
+      </div>
+
+      <SnapshotSection
+        kicker="Reuse and shortcuts"
+        title="Move fast with templates and finance tools built into the same app."
+        body="Instead of forcing every workflow into raw arithmetic, EMTape lets you save structures as templates and then jump to money-specific helpers when discount, tax, margin, commission, split payment, or loan math comes up."
+        bullets={[
+          "Template categories already cover business, loans, budgeting, shopping, rent, and more.",
+          "Custom templates can define rows, operators, defaults, and descriptions before saving.",
+          "Finance shortcuts stay close to the keypad so you do not leave the calculation flow.",
+        ]}
+        primary={{
+          src: SCREENSHOTS.templatesList.src,
+          alt: SCREENSHOTS.templatesList.alt,
+          caption: "Reusable template library with category filters and preview actions.",
+        }}
+        secondary={{
+          src: SCREENSHOTS.createTemplate.src,
+          alt: SCREENSHOTS.createTemplate.alt,
+          caption: "Template builder for custom row structure and default values.",
+        }}
+      />
+
+      <section className="border-y border-border/70 bg-[#13203f] text-white">
+        <div className="mx-auto max-w-7xl px-5 py-18 md:px-8 md:py-24">
+          <div className="grid items-center gap-10 lg:grid-cols-[0.95fr_1.05fr]">
+            <div>
+              <div className="section-kicker border-white/15 bg-white/10 text-white">Settings and control</div>
+              <h2 className="mt-5 max-w-xl text-3xl font-bold tracking-tight text-white sm:text-4xl">
+                The settings area is part of the product story, not a forgotten afterthought.
+              </h2>
+              <p className="mt-5 max-w-xl text-lg leading-8 text-slate-200">
+                Appearance, tape density, text size, keypad size, note styling, export defaults,
+                storage, backup and restore, privacy links, support, current plan, restore purchases,
+                and about screens are all visible in the current app build.
+              </p>
+              <div className="mt-8 flex flex-col gap-3 text-sm leading-7 text-slate-200">
+                <div className="rounded-2xl border border-white/10 bg-white/5 px-4 py-3">
+                  Pick theme, accent color, keypad size, currency symbol, decimal places, and note style.
+                </div>
+                <div className="rounded-2xl border border-white/10 bg-white/5 px-4 py-3">
+                  Set PDF output style, choose whether to include expressions, and manage backup and restore.
+                </div>
+                <div className="rounded-2xl border border-white/10 bg-white/5 px-4 py-3">
+                  Open privacy policy, terms, plan details, manage plan, and restore purchases from inside settings.
+                </div>
+              </div>
+            </div>
+
+            <div className="grid gap-6 sm:grid-cols-2">
+              <ScreenshotPhone
+                src={SCREENSHOTS.settingsAppearance.src}
+                alt={SCREENSHOTS.settingsAppearance.alt}
+                caption="Appearance and calculator behavior settings."
+              />
+              <ScreenshotPhone
+                src={SCREENSHOTS.settingsExport.src}
+                alt={SCREENSHOTS.settingsExport.alt}
+                caption="Export defaults, footer text, and backup controls."
+                className="sm:mt-14"
+              />
+              <ScreenshotPhone
+                src={SCREENSHOTS.settingsPlanLegal.src}
+                alt={SCREENSHOTS.settingsPlanLegal.alt}
+                caption="Plan, privacy, legal, and restore purchase controls."
+              />
+              <ScreenshotPhone
+                src={SCREENSHOTS.actionsMenu.src}
+                alt={SCREENSHOTS.actionsMenu.alt}
+                caption="Document actions include export, pin, folder moves, and save as template."
+                className="sm:-mt-10"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="mx-auto max-w-7xl px-5 py-18 md:px-8 md:py-24">
+        <div className="grid gap-10 lg:grid-cols-[1fr_0.9fr]">
+          <div className="rounded-[2rem] border border-border/70 bg-surface p-8 shadow-[0_18px_50px_rgba(19,33,63,0.08)] md:p-10">
+            <div className="section-kicker">Plan and access</div>
+            <h2 className="mt-5 text-3xl font-bold tracking-tight sm:text-4xl">
+              Subscription language that matches the app instead of vague marketing.
             </h2>
-            <p className="mt-5 text-lg leading-relaxed text-muted">
-              Start with full access to EmTape. During the trial, all available features are
-              unlocked. After the trial, an active subscription is required to continue using
-              the full app. Billing and cancellation are handled through the App Store or Google
-              Play.
+            <p className="mt-5 text-lg leading-8 text-muted">
+              The current build shows a {CONFIG.featuredPlanName.toLowerCase()} plan, restore purchases,
+              unlimited saved histories, unlimited tape rows per history, and unlimited folders. EMTape
+              also presents support, privacy, and legal links directly inside settings.
             </p>
-            <div className="mt-9 flex flex-col sm:flex-row items-center justify-center gap-4">
-              <a
-                href={CONFIG.appStoreUrl}
-                className="inline-flex items-center justify-center rounded-xl bg-accent px-7 py-3.5 text-base font-semibold text-white shadow-sm hover:bg-accent-hover transition-colors"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Start free trial
-              </a>
+            <div className="mt-8 grid gap-4 md:grid-cols-2">
+              <div className="rounded-2xl bg-surface-elevated px-5 py-4">
+                <div className="text-[11px] font-bold uppercase tracking-[0.18em] text-accent">Trial</div>
+                <p className="mt-2 text-sm leading-7 text-muted">
+                  New users may receive a {CONFIG.trialDays}-day trial with app access rules explained in-app and in the store flow.
+                </p>
+              </div>
+              <div className="rounded-2xl bg-surface-elevated px-5 py-4">
+                <div className="text-[11px] font-bold uppercase tracking-[0.18em] text-accent">Store billing</div>
+                <p className="mt-2 text-sm leading-7 text-muted">
+                  Billing, cancellation, renewals, and refunds are governed by the app store where the purchase is made.
+                </p>
+              </div>
+            </div>
+            <div className="mt-8 flex flex-wrap gap-3">
               <Link
                 href="/subscription"
-                className="inline-flex items-center justify-center rounded-xl border border-border px-7 py-3.5 text-base font-medium text-foreground hover:bg-background transition-colors"
+                className="inline-flex items-center justify-center rounded-full bg-accent px-6 py-3 text-sm font-semibold text-white transition hover:bg-accent-hover"
               >
-                Learn about subscriptions
+                Read subscription details
               </Link>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Privacy Trust Section */}
-      <section className="mx-auto max-w-6xl px-5 md:px-8 py-20 md:py-28">
-        <div className="mx-auto max-w-2xl text-center">
-          <div className="mx-auto mb-6 inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-green-500/10 text-green-600">
-            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
-            </svg>
-          </div>
-          <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
-            Your calculations stay yours.
-          </h2>
-          <p className="mt-5 text-lg leading-relaxed text-muted">
-            EmTape is designed as a calculator, not an advertising platform. We do not sell your
-            data. We do not use third-party ad tracking. We use Sentry only to understand crashes
-            and app performance issues, and RevenueCat only to manage subscriptions and purchase
-            status.
-          </p>
-          <div className="mt-9">
-            <Link
-              href="/privacy"
-              className="inline-flex items-center justify-center rounded-xl border border-border px-7 py-3.5 text-base font-medium text-foreground hover:bg-surface transition-colors"
-            >
-              Read Privacy Policy
-            </Link>
-          </div>
-        </div>
-      </section>
-
-      {/* Support Section */}
-      <section className="bg-surface border-y border-border/60">
-        <div className="mx-auto max-w-6xl px-5 md:px-8 py-20 md:py-28">
-          <div className="mx-auto max-w-2xl text-center">
-            <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
-              Need help?
-            </h2>
-            <p className="mt-5 text-lg leading-relaxed text-muted">
-              Visit Support for subscription help, restore purchase guidance, app issues, and
-              contact information.
-            </p>
-            <div className="mt-9">
               <Link
-                href="/support"
-                className="inline-flex items-center justify-center rounded-xl bg-foreground px-7 py-3.5 text-base font-semibold text-background shadow-sm hover:bg-foreground/90 transition-colors"
+                href="/privacy"
+                className="inline-flex items-center justify-center rounded-full border border-border px-6 py-3 text-sm font-semibold text-foreground transition hover:bg-surface-elevated"
               >
-                Contact Support
+                Review privacy policy
               </Link>
             </div>
+          </div>
+
+          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-1">
+            <ScreenshotPhone
+              src={SCREENSHOTS.settingsPlanLegal.src}
+              alt={SCREENSHOTS.settingsPlanLegal.alt}
+              caption="Current plan, restore purchases, support, privacy, and terms live inside settings."
+            />
+            <ScreenshotPhone
+              src={SCREENSHOTS.darkTapeWages.src}
+              alt={SCREENSHOTS.darkTapeWages.alt}
+              caption="Dark mode stays polished for night use and finance-heavy sessions."
+            />
+          </div>
+        </div>
+      </section>
+
+      <section className="border-t border-border/70 bg-surface/55">
+        <div className="mx-auto max-w-7xl px-5 py-18 md:px-8 md:py-24">
+          <div className="max-w-3xl">
+            <div className="section-kicker">Need help</div>
+            <h2 className="mt-5 text-3xl font-bold tracking-tight sm:text-4xl">
+              Support, legal, and product details stay easy to find.
+            </h2>
+            <p className="mt-4 text-lg leading-8 text-muted">
+              The site now mirrors the actual product surfaces you shared, and the support and legal
+              pages are aligned to the current build instead of generic app-site filler.
+            </p>
+          </div>
+
+          <div className="mt-10 flex flex-col gap-4 sm:flex-row">
+            <Link
+              href="/support"
+              className="inline-flex items-center justify-center rounded-full bg-foreground px-6 py-3 text-sm font-semibold text-background transition hover:bg-foreground/90"
+            >
+              Visit support
+            </Link>
+            <Link
+              href="/contact"
+              className="inline-flex items-center justify-center rounded-full border border-border px-6 py-3 text-sm font-semibold text-foreground transition hover:bg-surface-elevated"
+            >
+              Contact {CONFIG.companyLegalName}
+            </Link>
           </div>
         </div>
       </section>

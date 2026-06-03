@@ -1,20 +1,13 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import ScreenshotPhone from "@/components/ScreenshotPhone";
 import { CONFIG } from "@/lib/config";
+import { SCREENSHOTS } from "@/lib/screenshots";
 
 export const metadata: Metadata = {
-  title: `Support — ${CONFIG.appName}`,
-  description: "Get help with EmTape subscriptions, restore purchase, free trial, and app issues.",
-  openGraph: {
-    title: `Support — ${CONFIG.appName}`,
-    description: "Get help with EmTape subscriptions, restore purchase, free trial, and app issues.",
-    type: "website",
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: `Support — ${CONFIG.appName}`,
-    description: "Get help with EmTape subscriptions, restore purchase, free trial, and app issues.",
-  },
+  title: "Support",
+  description:
+    "Get help with EMTape documents, templates, subscriptions, restore purchase, export, backups, and app issues.",
 };
 
 function SupportCard({
@@ -25,108 +18,116 @@ function SupportCard({
   children: React.ReactNode;
 }) {
   return (
-    <div className="rounded-2xl bg-surface border border-border/60 p-6 md:p-8">
-      <h2 className="text-lg font-semibold tracking-tight mb-4">{title}</h2>
-      <div className="text-sm leading-relaxed text-muted space-y-3">{children}</div>
+    <div className="card-surface rounded-[1.75rem] p-6 md:p-7">
+      <h2 className="text-lg font-semibold tracking-tight">{title}</h2>
+      <div className="mt-4 space-y-3 text-sm leading-7 text-muted">{children}</div>
     </div>
   );
 }
 
 export default function SupportPage() {
   return (
-    <div className="mx-auto max-w-6xl px-5 md:px-8 py-12 md:py-20">
-      <div className="mx-auto max-w-3xl text-center mb-14">
-        <h1 className="text-3xl font-bold tracking-tight sm:text-4xl">EmTape Support</h1>
-        <p className="mt-4 text-lg text-muted">
-          Need help with EmTape? We are here to help.
-        </p>
+    <div className="mx-auto max-w-7xl px-5 py-12 md:px-8 md:py-20">
+      <div className="grid items-start gap-10 lg:grid-cols-[1fr_0.9fr]">
+        <div>
+          <div className="section-kicker">Support</div>
+          <h1 className="mt-5 text-4xl font-bold tracking-tight sm:text-5xl">
+            Help for the actual EMTape workflow.
+          </h1>
+          <p className="mt-5 max-w-3xl text-lg leading-8 text-muted">
+            Support covers saved documents, templates, finance tools, export options, backups,
+            restore purchases, and subscription access. If something looks wrong in the workspace,
+            the tape, or settings, this is the right place to start.
+          </p>
+
+          <div className="mt-8 grid gap-5 md:grid-cols-2">
+            <SupportCard title="Restore purchase">
+              <p>
+                Open the plan area in settings and use <strong>Restore purchases</strong> if EMTape
+                does not recognize your access after reinstalling or switching devices.
+              </p>
+              <p>
+                Make sure you are signed in with the same Apple ID or Google account used for the
+                original purchase.
+              </p>
+            </SupportCard>
+
+            <SupportCard title="Manage plan">
+              <p>
+                Billing, cancellation, renewals, and refunds are handled by the app store where you
+                bought the subscription.
+              </p>
+              <p>
+                Deleting the app does not cancel a subscription. Use your store subscription settings
+                to manage it.
+              </p>
+            </SupportCard>
+
+            <SupportCard title="Templates and documents">
+              <p>
+                If a template or saved calculation is not behaving as expected, include the template
+                name, the document title, and a screenshot of the affected rows when you contact us.
+              </p>
+            </SupportCard>
+
+            <SupportCard title="Export and backups">
+              <p>
+                Export settings, header and footer text, and backup and restore options are grouped
+                under settings. If a PDF or backup issue appears, tell us which output style and
+                toggles were active.
+              </p>
+            </SupportCard>
+          </div>
+        </div>
+
+        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-1">
+          <ScreenshotPhone
+            src={SCREENSHOTS.settingsPlanLegal.src}
+            alt={SCREENSHOTS.settingsPlanLegal.alt}
+            caption="Plan, restore purchases, privacy, and legal links are visible in settings."
+          />
+          <ScreenshotPhone
+            src={SCREENSHOTS.settingsExport.src}
+            alt={SCREENSHOTS.settingsExport.alt}
+            caption="Export, storage, and backup controls live beside the calculator preferences."
+          />
+        </div>
       </div>
 
-      <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3 mb-16">
-        <SupportCard title="Restore Purchase">
-          <p>
-            If you already subscribed and the app does not recognize your access, open EmTape
-            and tap <strong>Restore Purchase</strong> where available.
-          </p>
-          <p>
-            Make sure you are signed in with the same Apple ID or Google account used for the
-            original purchase.
-          </p>
-        </SupportCard>
-
-        <SupportCard title="Cancel Subscription">
-          <p>
-            Subscriptions are managed by Apple App Store or Google Play. Deleting the app does
-            not cancel your subscription.
-          </p>
-          <p>
-            <strong>For iPhone or iPad:</strong>
-            <br />
-            Open Settings → Apple ID → Subscriptions → EmTape → Cancel Subscription.
-          </p>
-          <p>
-            <strong>For Android:</strong>
-            <br />
-            Open Google Play → Payments & subscriptions → Subscriptions → EmTape → Cancel
-            Subscription.
-          </p>
-        </SupportCard>
-
-        <SupportCard title="Free Trial">
-          <p>
-            EmTape may offer a 15-day free trial. During the trial, all available features are
-            unlocked.
-          </p>
-          <p>
-            After the trial, an active subscription is required to continue using the full app.
-          </p>
-        </SupportCard>
-
-        <SupportCard title="App Issues">
-          <p>
-            If the app crashes, freezes, or behaves unexpectedly, update to the latest version
-            and restart your device.
-          </p>
-          <p>If the issue continues, contact support.</p>
-        </SupportCard>
-
-        <SupportCard title="Privacy Questions">
-          <p>
-            Read our{" "}
-            <Link href="/privacy" className="text-accent hover:text-accent-hover underline underline-offset-3">
-              Privacy Policy
-            </Link>{" "}
-            to understand how EmTape uses RevenueCat for subscriptions and Sentry for
-            crash/error diagnostics.
-          </p>
-        </SupportCard>
-      </div>
-
-      <div className="mx-auto max-w-2xl rounded-2xl bg-surface border border-border/60 p-8 md:p-10 text-center">
-        <h2 className="text-xl font-semibold tracking-tight mb-3">Contact Support</h2>
-        <p className="text-muted mb-6">
-          Email:{" "}
+      <div className="mt-14 rounded-[2rem] border border-border/70 bg-surface p-8 shadow-[0_18px_50px_rgba(19,33,63,0.08)] md:p-10">
+        <h2 className="text-2xl font-semibold tracking-tight">Contact support</h2>
+        <p className="mt-4 max-w-3xl text-base leading-8 text-muted">
+          Email{" "}
           <a
             href={`mailto:${CONFIG.supportEmail}`}
-            className="text-accent hover:text-accent-hover underline underline-offset-3 font-medium"
+            className="font-semibold text-accent underline underline-offset-4"
           >
             {CONFIG.supportEmail}
-          </a>
+          </a>{" "}
+          and include the issue, your device, your app version, and a screenshot or screen recording if
+          it helps explain the problem.
         </p>
-        <p className="text-sm text-muted mb-6">
-          When contacting support, include:
-        </p>
-        <ul className="text-sm text-muted space-y-2 mb-8 inline-block text-left">
-          <li>• Your device type</li>
-          <li>• App version</li>
-          <li>• iOS or Android version</li>
-          <li>• Description of the issue</li>
-          <li>• Screenshot if helpful</li>
+
+        <ul className="mt-6 space-y-3 text-sm leading-7 text-muted">
+          <li>Do include the document or template name if the problem is tied to saved work.</li>
+          <li>Do mention whether the issue is in documents, templates, tape editing, export, or plan management.</li>
+          <li>Do not send passwords, card numbers, or sensitive financial records.</li>
         </ul>
-        <p className="text-xs text-muted">
-          Do not send sensitive information such as card numbers, passwords, PINs, or private
-          financial records.
-        </p>
+
+        <div className="mt-8 flex flex-wrap gap-3">
+          <a
+            href={`mailto:${CONFIG.supportEmail}`}
+            className="inline-flex items-center justify-center rounded-full bg-accent px-6 py-3 text-sm font-semibold text-white transition hover:bg-accent-hover"
+          >
+            Email support
+          </a>
+          <Link
+            href="/privacy"
+            className="inline-flex items-center justify-center rounded-full border border-border px-6 py-3 text-sm font-semibold text-foreground transition hover:bg-surface-elevated"
+          >
+            Review privacy details
+          </Link>
+        </div>
       </div>
     </div>
   );

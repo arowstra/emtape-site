@@ -1,370 +1,215 @@
 import type { Metadata } from "next";
-import { CONFIG } from "@/lib/config";
 import LegalPageLayout from "@/components/LegalPageLayout";
+import { CONFIG } from "@/lib/config";
 
 export const metadata: Metadata = {
-  title: `Privacy Policy — ${CONFIG.appName}`,
+  title: "Privacy Policy",
   description:
-    "Learn how EmTape handles subscription data through RevenueCat and crash diagnostics through Sentry.",
-  openGraph: {
-    title: `Privacy Policy — ${CONFIG.appName}`,
-    description:
-      "Learn how EmTape handles subscription data through RevenueCat and crash diagnostics through Sentry.",
-    type: "website",
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: `Privacy Policy — ${CONFIG.appName}`,
-    description:
-      "Learn how EmTape handles subscription data through RevenueCat and crash diagnostics through Sentry.",
-  },
+    "Learn how EMTape handles local calculation data, subscriptions, exports, backups, support requests, and limited diagnostic processing.",
 };
 
 const toc = [
-  { id: "information-we-collect", label: "1. Information We Collect" },
-  { id: "information-we-do-not-collect", label: "2. Information We Do Not Collect" },
-  { id: "how-we-use-information", label: "3. How We Use Information" },
-  { id: "subscription-and-payment", label: "4. Subscription and Payment Processing" },
-  { id: "third-party-services", label: "5. Third-Party Services We Use" },
-  { id: "sharing", label: "6. Sharing of Information" },
-  { id: "data-retention", label: "7. Data Retention" },
-  { id: "your-choices", label: "8. Your Choices and Controls" },
-  { id: "childrens-privacy", label: "9. Children's Privacy" },
-  { id: "international", label: "10. International Data Processing" },
-  { id: "security", label: "11. Security" },
-  { id: "no-advertising", label: "12. No Advertising Tracking" },
-  { id: "changes", label: "13. Changes to This Privacy Policy" },
-  { id: "contact", label: "14. Contact Us" },
+  { id: "scope", label: "1. Scope" },
+  { id: "app-data", label: "2. Data You Create in EMTape" },
+  { id: "service-data", label: "3. Subscription, Support, and Diagnostics" },
+  { id: "exports", label: "4. Exports, Backups, and Sharing" },
+  { id: "use", label: "5. How We Use Information" },
+  { id: "advertising", label: "6. No Sale of Data or Ad Tracking" },
+  { id: "retention", label: "7. Retention and Your Controls" },
+  { id: "children", label: "8. Children's Privacy" },
+  { id: "international", label: "9. International Processing" },
+  { id: "changes", label: "10. Changes to This Policy" },
+  { id: "contact", label: "11. Contact" },
 ];
 
 export default function PrivacyPage() {
   return (
     <LegalPageLayout title="Privacy Policy" toc={toc}>
-      <div className="mb-10 text-sm text-muted space-y-1">
-        <p><strong>Effective Date:</strong> {CONFIG.launchDate}</p>
-        <p><strong>App Name:</strong> {CONFIG.appName}</p>
-        <p><strong>Website:</strong> {CONFIG.websiteUrl}</p>
-        <p><strong>Contact:</strong> {CONFIG.supportEmail}</p>
+      <div className="mb-10 space-y-1 text-sm text-muted">
+        <p>
+          <strong>Effective date:</strong> {CONFIG.launchDate}
+        </p>
+        <p>
+          <strong>Product:</strong> {CONFIG.appName}
+        </p>
+        <p>
+          <strong>Operator:</strong> {CONFIG.companyLegalName}
+        </p>
+        <p>
+          <strong>Website:</strong>{" "}
+          <a href={CONFIG.websiteUrl} target="_blank" rel="noopener noreferrer">
+            {CONFIG.websiteUrl}
+          </a>
+        </p>
+        <p>
+          <strong>Contact:</strong> {CONFIG.supportEmail}
+        </p>
       </div>
 
       <p className="mb-8 text-muted">
-        This Privacy Policy explains how EmTape collects, uses, discloses, and protects
-        information when you use the EmTape mobile application and related website.
+        EMTape is designed as a calculator workspace, not an advertising platform. This policy
+        explains how we handle information connected to the mobile app and this website.
       </p>
 
-      <p className="mb-8 text-muted">
-        EmTape is a calculator and paper tape productivity app. We believe your calculations
-        should remain private. We do not sell your personal data, we do not use advertising
-        trackers, and we do not collect your calculation contents for marketing.
-      </p>
-
-      <h2 id="information-we-collect" className="text-2xl font-semibold mt-12 mb-4">
-        1. Information We Collect
+      <h2 id="scope" className="mt-12 mb-4 text-2xl font-semibold">
+        1. Scope
       </h2>
       <p className="mb-6 text-muted">
-        EmTape is designed to collect as little information as possible.
-      </p>
-      <p className="mb-6 text-muted">
-        We may collect or process the following limited categories of information:
-      </p>
-
-      <h3 className="text-lg font-semibold mt-8 mb-3">1.1 Purchase and Subscription Information</h3>
-      <p className="mb-4 text-muted">
-        EmTape uses RevenueCat to manage subscriptions, free trial status, purchase validation,
-        entitlement access, and purchase restoration.
-      </p>
-      <p className="mb-4 text-muted">RevenueCat may process information such as:</p>
-      <ul className="mb-6 text-muted">
-        <li>App user identifier or anonymous customer identifier</li>
-        <li>Subscription status</li>
-        <li>Product identifier</li>
-        <li>Purchase date</li>
-        <li>Expiration date</li>
-        <li>Renewal status</li>
-        <li>Trial status</li>
-        <li>Store receipt or purchase token</li>
-        <li>App platform, such as iOS or Android</li>
-        <li>Country or region information provided by the app store where applicable</li>
-      </ul>
-      <p className="mb-6 text-muted">
-        We use this information only to determine whether you have access to EmTape&apos;s paid
-        features, free trial, or subscription.
-      </p>
-      <p className="mb-6 text-muted">
-        We do not receive or store your full credit card number, bank account details, or
-        payment card security code. Payment processing is handled by Apple App Store or Google
-        Play, depending on where you downloaded the app.
+        This policy applies to the EMTape website and the EMTape mobile app, including saved
+        calculation documents, templates, folders, settings, export options, subscription access,
+        support contacts, and other app features made available in the current product.
       </p>
 
-      <h3 className="text-lg font-semibold mt-8 mb-3">1.2 Crash, Error, and Diagnostic Information</h3>
-      <p className="mb-4 text-muted">
-        EmTape uses Sentry to help us detect crashes, errors, bugs, performance issues, and
-        stability problems.
-      </p>
-      <p className="mb-4 text-muted">Sentry may process diagnostic information such as:</p>
-      <ul className="mb-6 text-muted">
-        <li>App version</li>
-        <li>Device model</li>
-        <li>Operating system version</li>
-        <li>Error logs</li>
-        <li>Crash reports</li>
-        <li>Performance information</li>
-        <li>Time of error</li>
-        <li>Screen or app area where an error occurred</li>
-        <li>Technical breadcrumbs leading to a crash</li>
-        <li>Network or device metadata such as IP address where automatically processed by the service</li>
-      </ul>
-      <p className="mb-6 text-muted">
-        We use this information only to fix bugs, improve app stability, improve performance,
-        and protect the reliability of the app.
-      </p>
-      <p className="mb-6 text-muted">
-        We do not intentionally send calculator tape contents, calculation history, PIN codes,
-        passwords, payment card details, or sensitive personal information to Sentry.
-      </p>
-
-      <h3 className="text-lg font-semibold mt-8 mb-3">1.3 Information You Provide When Contacting Support</h3>
-      <p className="mb-4 text-muted">
-        If you contact us by email or through a support link, we may receive the information
-        you choose to provide, such as:
-      </p>
-      <ul className="mb-6 text-muted">
-        <li>Your email address</li>
-        <li>Your name, if included</li>
-        <li>Your message</li>
-        <li>Screenshots or files you choose to send</li>
-        <li>Details about the issue you are reporting</li>
-      </ul>
-      <p className="mb-6 text-muted">
-        We use this information only to respond to your request and provide support.
-      </p>
-
-      <h3 className="text-lg font-semibold mt-8 mb-3">1.4 Information Stored Locally on Your Device</h3>
-      <p className="mb-4 text-muted">
-        Some information may be stored locally on your device to make the app work properly.
-        This may include:
-      </p>
-      <ul className="mb-6 text-muted">
-        <li>Calculator history</li>
-        <li>Tape entries</li>
-        <li>App preferences</li>
-        <li>Theme settings</li>
-        <li>Currency symbol settings</li>
-        <li>Local security settings</li>
-        <li>Other app settings</li>
-      </ul>
-      <p className="mb-6 text-muted">
-        Local data is generally stored on your device and is not sold or used for advertising.
-        If you delete the app, local data may be deleted depending on your device settings and
-        operating system behavior.
-      </p>
-
-      <h2 id="information-we-do-not-collect" className="text-2xl font-semibold mt-12 mb-4">
-        2. Information We Do Not Collect
+      <h2 id="app-data" className="mt-12 mb-4 text-2xl font-semibold">
+        2. Data You Create in EMTape
       </h2>
-      <p className="mb-4 text-muted">EmTape does not intentionally collect:</p>
-      <ul className="mb-6 text-muted">
-        <li>Your contacts</li>
-        <li>Your photos or videos</li>
-        <li>Your precise GPS location</li>
-        <li>Your microphone recordings</li>
-        <li>Your camera content</li>
-        <li>Your messages</li>
-        <li>Your bank login details</li>
-        <li>Your card number</li>
-        <li>Your PIN code</li>
-        <li>Your biometric data</li>
-        <li>Your calculation content for advertising</li>
-        <li>Your calculation history for resale</li>
-        <li>Advertising identifiers for tracking</li>
-        <li>Data for third-party ad networks</li>
-      </ul>
-
-      <h2 id="how-we-use-information" className="text-2xl font-semibold mt-12 mb-4">
-        3. How We Use Information
-      </h2>
-      <p className="mb-4 text-muted">
-        We use the limited information described above to:
+      <p className="mb-6 text-muted">
+        EMTape is built around calculation content you create. Depending on how you use the app,
+        that may include:
       </p>
       <ul className="mb-6 text-muted">
-        <li>Provide access to free trial and subscription features</li>
-        <li>Validate purchases</li>
-        <li>Restore purchases</li>
-        <li>Prevent subscription errors</li>
-        <li>Fix crashes and bugs</li>
-        <li>Improve app performance and reliability</li>
+        <li>Calculation documents and tape rows</li>
+        <li>Totals, expressions, notes, and titles</li>
+        <li>Templates, categories, and default values</li>
+        <li>Folders, pin status, sort and filter state</li>
+        <li>Appearance, keypad, currency, and export settings</li>
+        <li>Header and footer text used for export output</li>
+      </ul>
+      <p className="mb-6 text-muted">
+        Based on the current product settings, this app data is primarily stored locally on your
+        device. The app settings currently indicate local SQLite storage for app data.
+      </p>
+      <p className="mb-6 text-muted">
+        We do not describe your calculations as advertising inventory and we do not sell your
+        calculation history to data brokers.
+      </p>
+
+      <h2 id="service-data" className="mt-12 mb-4 text-2xl font-semibold">
+        3. Subscription, Support, and Diagnostics
+      </h2>
+      <p className="mb-6 text-muted">
+        To operate paid access, restore purchases, support requests, and app reliability, limited
+        service-related information may be processed.
+      </p>
+
+      <h3 className="mt-8 mb-3 text-lg font-semibold">Subscription and purchase state</h3>
+      <p className="mb-6 text-muted">
+        Subscription billing is handled by the app store where the purchase is made. We may use
+        subscription infrastructure such as RevenueCat to validate entitlements, determine trial or
+        plan status, and restore access after reinstall or device changes.
+      </p>
+      <p className="mb-6 text-muted">
+        This may involve identifiers associated with the app install or store purchase, product and
+        entitlement status, purchase dates, renewal state, and related subscription metadata.
+      </p>
+
+      <h3 className="mt-8 mb-3 text-lg font-semibold">Support requests</h3>
+      <p className="mb-6 text-muted">
+        If you email support, we receive the information you choose to send, such as your email
+        address, device details, screenshots, and the contents of your message.
+      </p>
+
+      <h3 className="mt-8 mb-3 text-lg font-semibold">Crash and diagnostic information</h3>
+      <p className="mb-6 text-muted">
+        We may use diagnostic tooling such as Sentry to understand crashes, app errors, and
+        performance issues. This can include technical information like app version, device model,
+        operating system version, timestamps, and error traces needed to fix the product.
+      </p>
+      <p className="mb-6 text-muted">
+        We do not intend to send full calculation history, passwords, payment card numbers, or
+        private financial records to diagnostic tools.
+      </p>
+
+      <h2 id="exports" className="mt-12 mb-4 text-2xl font-semibold">
+        4. Exports, Backups, and Sharing
+      </h2>
+      <p className="mb-6 text-muted">
+        EMTape includes export and backup-related settings. When you choose to export, back up,
+        restore, print, or share content, the app may create files or pass content to locations,
+        apps, or services you select through your device operating system.
+      </p>
+      <p className="mb-6 text-muted">
+        Those destinations are governed by the privacy and security rules of the platform or service
+        you choose. You should review those providers separately if you rely on them for storage or
+        sharing.
+      </p>
+
+      <h2 id="use" className="mt-12 mb-4 text-2xl font-semibold">
+        5. How We Use Information
+      </h2>
+      <p className="mb-4 text-muted">We use limited information to:</p>
+      <ul className="mb-6 text-muted">
+        <li>Provide the calculator workspace and settings you choose</li>
+        <li>Validate subscription access and restore purchases</li>
         <li>Respond to support requests</li>
-        <li>Maintain app security</li>
-        <li>Comply with legal, platform, and App Store requirements</li>
+        <li>Diagnose crashes, bugs, and performance issues</li>
+        <li>Maintain security, reliability, and legal compliance</li>
       </ul>
       <p className="mb-6 text-muted">
-        We do not use your information to build advertising profiles.
+        We do not use your data to build third-party ad profiles.
       </p>
 
-      <h2 id="subscription-and-payment" className="text-2xl font-semibold mt-12 mb-4">
-        4. Subscription and Payment Processing
+      <h2 id="advertising" className="mt-12 mb-4 text-2xl font-semibold">
+        6. No Sale of Data or Ad Tracking
       </h2>
       <p className="mb-6 text-muted">
-        EmTape subscriptions are processed by Apple App Store or Google Play.
-      </p>
-      <p className="mb-6 text-muted">
-        We do not directly process your payment card information. Your purchase, renewal,
-        cancellation, and refund rights are handled by the app store where you made the
-        purchase.
-      </p>
-      <p className="mb-6 text-muted">
-        RevenueCat helps us verify your subscription status and determine whether your app
-        access should be active.
+        We do not sell personal information. We do not position EMTape as an ad-supported tracking
+        product. We do not intentionally use third-party advertising networks to monetize your
+        calculation history.
       </p>
 
-      <h2 id="third-party-services" className="text-2xl font-semibold mt-12 mb-4">
-        5. Third-Party Services We Use
+      <h2 id="retention" className="mt-12 mb-4 text-2xl font-semibold">
+        7. Retention and Your Controls
       </h2>
       <p className="mb-6 text-muted">
-        EmTape uses the following service providers:
+        App content stored locally generally remains on your device until you edit it, export it,
+        back it up, clear it, or remove the app, subject to your device and platform behavior.
       </p>
-
-      <h3 className="text-lg font-semibold mt-8 mb-3">RevenueCat</h3>
-      <p className="mb-4 text-muted">Purpose:</p>
+      <p className="mb-6 text-muted">
+        Subscription records, support emails, and technical diagnostics may be retained only as long
+        as needed to provide the service, handle support, comply with legal obligations, resolve
+        disputes, or improve reliability.
+      </p>
+      <p className="mb-6 text-muted">You can typically control data by:</p>
       <ul className="mb-6 text-muted">
-        <li>Subscription management</li>
-        <li>Purchase validation</li>
-        <li>Free trial and entitlement status</li>
-        <li>Restore purchases</li>
+        <li>Managing settings and local app content on your device</li>
+        <li>Using in-app restore or backup controls where available</li>
+        <li>Managing subscriptions through your app store account</li>
+        <li>Contacting us about support or privacy questions</li>
       </ul>
 
-      <h3 className="text-lg font-semibold mt-8 mb-3">Sentry</h3>
-      <p className="mb-4 text-muted">Purpose:</p>
-      <ul className="mb-6 text-muted">
-        <li>Crash reporting</li>
-        <li>Error monitoring</li>
-        <li>Performance diagnostics</li>
-        <li>App stability improvement</li>
-      </ul>
-      <p className="mb-6 text-muted">
-        These providers may process data according to their own privacy and security practices.
-        We use them only for the limited purposes described in this Privacy Policy.
-      </p>
-
-      <h2 id="sharing" className="text-2xl font-semibold mt-12 mb-4">
-        6. Sharing of Information
-      </h2>
-      <p className="mb-6 text-muted">We do not sell your personal information.</p>
-      <p className="mb-4 text-muted">
-        We may share limited information only in these cases:
-      </p>
-      <ul className="mb-6 text-muted">
-        <li>With RevenueCat for subscription management</li>
-        <li>With Sentry for crash/error diagnostics</li>
-        <li>With Apple or Google as part of app store purchase processing</li>
-        <li>If required by law, regulation, legal process, or government request</li>
-        <li>To protect the rights, safety, and security of EmTape, users, or others</li>
-        <li>In connection with a business transfer such as merger, acquisition, or sale of assets, if applicable</li>
-      </ul>
-
-      <h2 id="data-retention" className="text-2xl font-semibold mt-12 mb-4">
-        7. Data Retention
+      <h2 id="children" className="mt-12 mb-4 text-2xl font-semibold">
+        8. Children&apos;s Privacy
       </h2>
       <p className="mb-6 text-muted">
-        We keep information only for as long as needed for the purposes described in this
-        Privacy Policy.
-      </p>
-      <p className="mb-6 text-muted">
-        Subscription-related records may be retained as needed to verify purchase status,
-        restore purchases, comply with app store rules, resolve disputes, and meet legal or
-        accounting obligations.
-      </p>
-      <p className="mb-6 text-muted">
-        Crash and diagnostic data is retained for a limited period as configured in Sentry and
-        used to investigate and fix technical issues.
-      </p>
-      <p className="mb-6 text-muted">
-        Support emails may be retained for as long as needed to resolve your request and
-        maintain support records.
+        EMTape is a general utility app and is not directed specifically to children under 13. If
+        you believe a child has provided personal information to us directly through support or
+        another channel, contact us so we can review the request.
       </p>
 
-      <h2 id="your-choices" className="text-2xl font-semibold mt-12 mb-4">
-        8. Your Choices and Controls
-      </h2>
-      <p className="mb-4 text-muted">You can:</p>
-      <ul className="mb-6 text-muted">
-        <li>Cancel subscriptions through Apple App Store or Google Play</li>
-        <li>Restore purchases inside the app where supported</li>
-        <li>Delete local app data by using app settings where available or deleting the app</li>
-        <li>Contact us to request help with privacy-related questions</li>
-        <li>Contact us to request deletion of support communications or data associated with your request, where legally and technically possible</li>
-      </ul>
-      <p className="mb-6 text-muted">
-        Because some purchase records are controlled by Apple, Google, or RevenueCat, we may
-        not be able to delete all app store transaction records directly, but we can guide you
-        to the correct platform process.
-      </p>
-
-      <h2 id="childrens-privacy" className="text-2xl font-semibold mt-12 mb-4">
-        9. Children&apos;s Privacy
+      <h2 id="international" className="mt-12 mb-4 text-2xl font-semibold">
+        9. International Processing
       </h2>
       <p className="mb-6 text-muted">
-        EmTape is a general utility calculator app and is not directed to children under 13.
-      </p>
-      <p className="mb-6 text-muted">
-        We do not knowingly collect personal information from children under 13. If you believe
-        a child has provided us with personal information, please contact us and we will take
-        appropriate steps to delete it where required.
+        Service providers involved in subscriptions, diagnostics, communications, or website hosting
+        may process information in countries outside your own. By using EMTape, you understand that
+        these limited data flows may occur as part of operating the service.
       </p>
 
-      <h2 id="international" className="text-2xl font-semibold mt-12 mb-4">
-        10. International Data Processing
+      <h2 id="changes" className="mt-12 mb-4 text-2xl font-semibold">
+        10. Changes to This Policy
       </h2>
       <p className="mb-6 text-muted">
-        Our service providers may process information in countries other than your country of
-        residence. These countries may have data protection laws that differ from those in your
-        location.
-      </p>
-      <p className="mb-6 text-muted">
-        By using EmTape, you understand that limited technical and subscription-related
-        information may be processed by our service providers for the purposes described in
-        this Privacy Policy.
+        We may update this policy from time to time as the product changes, as store rules change,
+        or as legal requirements evolve. When material changes are made, we will update the effective
+        date and may provide additional notice where appropriate.
       </p>
 
-      <h2 id="security" className="text-2xl font-semibold mt-12 mb-4">
-        11. Security
-      </h2>
-      <p className="mb-6 text-muted">
-        We take reasonable steps to protect information processed through EmTape. However, no
-        method of electronic transmission or storage is completely secure. We cannot guarantee
-        absolute security.
-      </p>
-      <p className="mb-6 text-muted">
-        We aim to minimize the information we collect so that unnecessary personal data is not
-        processed.
-      </p>
-
-      <h2 id="no-advertising" className="text-2xl font-semibold mt-12 mb-4">
-        12. No Advertising Tracking
-      </h2>
-      <p className="mb-6 text-muted">
-        EmTape does not use third-party advertising networks, behavioral advertising trackers,
-        or data brokers.
-      </p>
-      <p className="mb-6 text-muted">We do not sell personal information.</p>
-
-      <h2 id="changes" className="text-2xl font-semibold mt-12 mb-4">
-        13. Changes to This Privacy Policy
-      </h2>
-      <p className="mb-6 text-muted">
-        We may update this Privacy Policy from time to time. If we make material changes, we
-        will update the effective date and may provide additional notice where appropriate.
-      </p>
-      <p className="mb-6 text-muted">
-        Your continued use of EmTape after an update means you accept the updated Privacy
-        Policy.
-      </p>
-
-      <h2 id="contact" className="text-2xl font-semibold mt-12 mb-4">
-        14. Contact Us
+      <h2 id="contact" className="mt-12 mb-4 text-2xl font-semibold">
+        11. Contact
       </h2>
       <p className="mb-4 text-muted">
-        For privacy questions, support requests, or data-related requests, contact us at:
+        For privacy questions, support requests, or data-related enquiries, contact:
       </p>
       <p className="mb-6 font-semibold">{CONFIG.supportEmail}</p>
     </LegalPageLayout>
