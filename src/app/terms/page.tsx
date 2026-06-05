@@ -34,7 +34,7 @@ export default function TermsPage() {
           <strong>Product:</strong> {CONFIG.appName}
         </p>
         <p>
-          <strong>Operator:</strong> {CONFIG.companyLegalName}
+          <strong>Owner:</strong> {CONFIG.ownerLegalName}
         </p>
         <p>
           <strong>Contact:</strong> {CONFIG.supportEmail}
@@ -155,7 +155,7 @@ export default function TermsPage() {
       </h2>
       <p className="mb-6 text-muted">
         EMTape, including its name, logo, interface, branding, code, graphics, and written content,
-        is owned by {CONFIG.companyLegalName} or its licensors and is protected by applicable law.
+        is owned by {CONFIG.ownerLegalName} or its licensors and is protected by applicable law.
       </p>
 
       <h2 id="disclaimer" className="mt-12 mb-4 text-2xl font-semibold">
@@ -167,7 +167,7 @@ export default function TermsPage() {
         and non-infringement.
       </p>
       <p className="mb-6 text-muted">
-        To the fullest extent permitted by law, {CONFIG.companyLegalName} is not liable for indirect,
+        To the fullest extent permitted by law, {CONFIG.ownerLegalName} is not liable for indirect,
         incidental, special, or consequential loss arising from use of the site or app, including
         loss of data, profit, business interruption, or incorrect decisions made from calculations.
       </p>

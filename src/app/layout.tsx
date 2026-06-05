@@ -22,7 +22,6 @@ const ibmPlexMono = IBM_Plex_Mono({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL(CONFIG.websiteUrl),
   title: {
     default: `${CONFIG.appName} | Tape-first calculator workspace`,
     template: `%s | ${CONFIG.appName}`,

@@ -33,13 +33,7 @@ export default function PrivacyPage() {
           <strong>Product:</strong> {CONFIG.appName}
         </p>
         <p>
-          <strong>Operator:</strong> {CONFIG.companyLegalName}
-        </p>
-        <p>
-          <strong>Website:</strong>{" "}
-          <a href={CONFIG.websiteUrl} target="_blank" rel="noopener noreferrer">
-            {CONFIG.websiteUrl}
-          </a>
+          <strong>Owner:</strong> {CONFIG.ownerLegalName}
         </p>
         <p>
           <strong>Contact:</strong> {CONFIG.supportEmail}

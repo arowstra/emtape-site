@@ -470,7 +470,7 @@ export default function HomePage() {
               href="/contact"
               className="inline-flex items-center justify-center rounded-full border border-border px-6 py-3 text-sm font-semibold text-foreground transition hover:bg-surface-elevated"
             >
-              Contact {CONFIG.companyLegalName}
+              Contact {CONFIG.ownerLegalName}
             </Link>
           </div>
         </div>

@@ -32,7 +32,7 @@ export default function Footer() {
             </Link>
             <p className="text-sm leading-7 text-muted">{CONFIG.tagline}</p>
             <p className="mt-4 text-sm leading-7 text-muted">
-              {CONFIG.companyLegalName}
+              {CONFIG.ownerLegalName}
               <br />
               <a href={`mailto:${CONFIG.supportEmail}`} className="underline underline-offset-4">
                 {CONFIG.supportEmail}
