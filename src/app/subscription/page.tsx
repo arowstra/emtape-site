@@ -89,7 +89,7 @@ export default function SubscriptionPage() {
           <ScreenshotPhone
             src={SCREENSHOTS.settingsPlanLegal.src}
             alt={SCREENSHOTS.settingsPlanLegal.alt}
-            caption="The plan area shows current plan, restore purchases, and support plus legal links."
+            caption="The plan area shows limits, manage plan, restore purchases, and product details."
           />
           <ScreenshotPhone
             src={SCREENSHOTS.documentsHome.src}

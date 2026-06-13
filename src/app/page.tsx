@@ -286,7 +286,7 @@ export default function HomePage() {
         secondary={{
           src: SCREENSHOTS.documentsList.src,
           alt: SCREENSHOTS.documentsList.alt,
-          caption: "Document cards keep totals and tape length visible at a glance.",
+          caption: "Dark mode starts from the same clean tape and keypad workflow.",
         }}
       />
 
@@ -308,7 +308,7 @@ export default function HomePage() {
           secondary={{
             src: SCREENSHOTS.tapeNegativeTotal.src,
             alt: SCREENSHOTS.tapeNegativeTotal.alt,
-            caption: "Negative totals stay obvious and editable inside the same tape.",
+            caption: "Percentage deductions and balances stay editable inside the same tape.",
           }}
           reverse
         />
@@ -326,7 +326,7 @@ export default function HomePage() {
         primary={{
           src: SCREENSHOTS.templatesList.src,
           alt: SCREENSHOTS.templatesList.alt,
-          caption: "Reusable template library with category filters and preview actions.",
+          caption: "Currency selection supports common local and international money formats.",
         }}
         secondary={{
           src: SCREENSHOTS.createTemplate.src,
@@ -370,18 +370,18 @@ export default function HomePage() {
               <ScreenshotPhone
                 src={SCREENSHOTS.settingsExport.src}
                 alt={SCREENSHOTS.settingsExport.alt}
-                caption="Export defaults, footer text, and backup controls."
+                caption="Calculation, keypad, and export preferences stay grouped in settings."
                 className="sm:mt-14"
               />
               <ScreenshotPhone
                 src={SCREENSHOTS.settingsPlanLegal.src}
                 alt={SCREENSHOTS.settingsPlanLegal.alt}
-                caption="Plan, privacy, legal, and restore purchase controls."
+                caption="Plan limits, manage plan, restore purchase, export tools, and product details."
               />
               <ScreenshotPhone
                 src={SCREENSHOTS.actionsMenu.src}
                 alt={SCREENSHOTS.actionsMenu.alt}
-                caption="Document actions include export, pin, folder moves, and save as template."
+                caption="The calculator toolbar keeps export, duplicate, and more actions close to the tape."
                 className="sm:-mt-10"
               />
             </div>

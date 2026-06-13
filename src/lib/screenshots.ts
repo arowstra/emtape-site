@@ -20,7 +20,7 @@ type Screenshot = {
 export const SCREENSHOTS = {
   actionsMenu: {
     src: actionsMenu,
-    alt: "EmTape calculation action menu with export, rename, duplicate, pin, folder, template, clear, and delete options.",
+    alt: "EmTape light calculator tape showing multiplication, running totals, toolbar actions, and the numeric keypad.",
   },
   createTemplate: {
     src: createTemplate,
@@ -28,7 +28,7 @@ export const SCREENSHOTS = {
   },
   darkTapeWages: {
     src: darkTapeWages,
-    alt: "EmTape dark mode tape showing wages and a percentage deduction on the calculator keypad screen.",
+    alt: "EmTape dark mode calculator tape showing dollar entries, a total, toolbar controls, and the keypad.",
   },
   documentsHome: {
     src: documentsHome,
@@ -36,7 +36,7 @@ export const SCREENSHOTS = {
   },
   documentsList: {
     src: documentsList,
-    alt: "EmTape document cards showing saved calculations, totals, timestamps, line counts, and folder status.",
+    alt: "EmTape dark mode blank calculator tape with toolbar controls and keypad ready for input.",
   },
   financeTools: {
     src: financeTools,
@@ -44,15 +44,15 @@ export const SCREENSHOTS = {
   },
   settingsAppearance: {
     src: settingsAppearance,
-    alt: "EmTape settings screen with theme, accent color, tape density, font style, and calculation preferences.",
+    alt: "EmTape dark settings screen with appearance controls, currency settings, decimal places, and bottom navigation.",
   },
   settingsExport: {
     src: settingsExport,
-    alt: "EmTape export settings showing PDF style, expressions, footer options, and local storage with backup and restore.",
+    alt: "EmTape light settings screen showing calculation, keypad, and export preferences.",
   },
   settingsPlanLegal: {
     src: settingsPlanLegal,
-    alt: "EmTape settings showing privacy and security, support and legal links, yearly plan, saved histories, tape rows, folders, and restore purchases.",
+    alt: "EmTape settings screen showing plan limits, manage plan, restore purchases, export tools, and product version.",
   },
   tapeDebtRepayment: {
     src: tapeDebtRepayment,
@@ -60,10 +60,10 @@ export const SCREENSHOTS = {
   },
   tapeNegativeTotal: {
     src: tapeNegativeTotal,
-    alt: "EmTape tape with a red negative total after subtracting a larger amount from the running balance.",
+    alt: "EmTape debt repayment tape showing a percentage deduction, running balance, and calculator keypad.",
   },
   templatesList: {
     src: templatesList,
-    alt: "EmTape template library with reusable finance layouts like daily sales, loan calculation, and profit and margin.",
+    alt: "EmTape currency selector sheet showing search and currency options including Nigerian Naira, US Dollar, Euro, and British Pound.",
   },
 } satisfies Record<string, Screenshot>;

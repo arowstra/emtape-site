@@ -50,7 +50,7 @@ export default function ContactPage() {
           <ScreenshotPhone
             src={SCREENSHOTS.actionsMenu.src}
             alt={SCREENSHOTS.actionsMenu.alt}
-            caption="The app includes export, duplicate, move, save as template, pin, and delete controls."
+            caption="The calculator toolbar keeps export, duplicate, and more actions close to the tape."
           />
           <ScreenshotPhone
             src={SCREENSHOTS.settingsPlanLegal.src}

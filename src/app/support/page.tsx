@@ -84,12 +84,12 @@ export default function SupportPage() {
           <ScreenshotPhone
             src={SCREENSHOTS.settingsPlanLegal.src}
             alt={SCREENSHOTS.settingsPlanLegal.alt}
-            caption="Plan, restore purchases, privacy, and legal links are visible in settings."
+            caption="Plan limits, manage plan, restore purchases, export tools, and version details are visible in settings."
           />
           <ScreenshotPhone
             src={SCREENSHOTS.settingsExport.src}
             alt={SCREENSHOTS.settingsExport.alt}
-            caption="Export, storage, and backup controls live beside the calculator preferences."
+            caption="Calculation, keypad, and export controls live together in settings."
           />
         </div>
       </div>
