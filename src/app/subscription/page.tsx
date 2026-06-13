@@ -8,7 +8,7 @@ import { SCREENSHOTS } from "@/lib/screenshots";
 export const metadata: Metadata = {
   title: "Subscription and trial",
   description:
-    "Understand EMTape trial access, subscription handling, restore purchases, and plan management.",
+    "Understand EmTape trial access, subscription handling, restore purchases, and plan management.",
 };
 
 function PlanCard({
@@ -36,7 +36,7 @@ export default function SubscriptionPage() {
             Clear subscription language for what the app already shows.
           </h1>
           <p className="mt-5 max-w-3xl text-lg leading-8 text-muted">
-            EMTape is positioned around saved calculations, templates, folders, export tools, and
+            EmTape is positioned around saved calculations, templates, folders, export tools, and
             settings-based control. The current build shows a {CONFIG.featuredPlanName.toLowerCase()}
             plan, restore purchases, and unlimited saved histories, tape rows per history, and folders.
           </p>
@@ -44,7 +44,7 @@ export default function SubscriptionPage() {
           <div className="mt-8 grid gap-5 md:grid-cols-2">
             <PlanCard title={`${CONFIG.trialDays}-day trial`}>
               <p>
-                New users may receive a {CONFIG.trialDays}-day trial before subscription access rules
+                New users receive a {CONFIG.trialDays}-day trial before subscription access rules
                 apply.
               </p>
               <p>
@@ -64,13 +64,13 @@ export default function SubscriptionPage() {
                 Apple App Store and Google Play handle billing, renewals, cancellations, and refund
                 rules for their respective purchases.
               </p>
-              <p>Deleting EMTape does not automatically cancel a subscription.</p>
+              <p>Deleting EmTape does not automatically cancel a subscription.</p>
             </PlanCard>
 
             <PlanCard title="Restore purchases">
               <p>
                 If you reinstall the app or move to a new device, use the restore purchases option in
-                settings so EMTape can re-check your store entitlement.
+                settings so EmTape can re-check your store entitlement.
               </p>
             </PlanCard>
           </div>

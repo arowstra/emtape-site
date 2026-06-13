@@ -7,7 +7,7 @@ import { SCREENSHOTS } from "@/lib/screenshots";
 export const metadata: Metadata = {
   title: "Support",
   description:
-    "Get help with EMTape documents, templates, subscriptions, restore purchase, export, backups, and app issues.",
+    "Get help with EmTape documents, templates, subscriptions, restore purchase, export, backups, and app issues.",
 };
 
 function SupportCard({
@@ -32,7 +32,7 @@ export default function SupportPage() {
         <div>
           <div className="section-kicker">Support</div>
           <h1 className="mt-5 text-4xl font-bold tracking-tight sm:text-5xl">
-            Help for the actual EMTape workflow.
+            Help for the actual EmTape workflow.
           </h1>
           <p className="mt-5 max-w-3xl text-lg leading-8 text-muted">
             Support covers saved documents, templates, finance tools, export options, backups,
@@ -43,7 +43,7 @@ export default function SupportPage() {
           <div className="mt-8 grid gap-5 md:grid-cols-2">
             <SupportCard title="Restore purchase">
               <p>
-                Open the plan area in settings and use <strong>Restore purchases</strong> if EMTape
+                Open the plan area in settings and use <strong>Restore purchases</strong> if EmTape
                 does not recognize your access after reinstalling or switching devices.
               </p>
               <p>

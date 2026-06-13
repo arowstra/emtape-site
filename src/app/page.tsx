@@ -161,7 +161,7 @@ export default function HomePage() {
             <div>
               <div className="section-kicker">
                 <BrandMark size={24} />
-                EMTape calculator app
+                EmTape calculator app
               </div>
               <h1 className="mt-6 max-w-3xl text-5xl font-bold tracking-[-0.05em] text-foreground sm:text-6xl lg:text-7xl">
                 The calculator that keeps the whole working, not just the answer.
@@ -190,7 +190,7 @@ export default function HomePage() {
                     Real product
                   </span>
                   <span className="mt-1 block">
-                    Every preview on this page is from the current EMTape app build, not a fake mockup.
+                    Every preview on this page is from the current EmTape app build, not a fake mockup.
                   </span>
                 </div>
               </div>
@@ -253,7 +253,7 @@ export default function HomePage() {
         <div className="mb-12 max-w-3xl">
           <div className="section-kicker">Why it is different</div>
           <h2 className="mt-5 text-3xl font-bold tracking-tight sm:text-4xl">
-            EMTape behaves like a finance notebook wrapped around a calculator.
+            EmTape behaves like a finance notebook wrapped around a calculator.
           </h2>
           <p className="mt-4 text-lg leading-8 text-muted">
             The product is not just a keypad with a tiny history strip. It combines calculation tape,
@@ -272,7 +272,7 @@ export default function HomePage() {
       <SnapshotSection
         kicker="Workspace flow"
         title="Start from documents, not from an empty calculator every time."
-        body="The home workspace already shows how EMTape is meant to be used: create a calculation, drop it into folders, search by title or totals, pin important work, and revisit saved histories instead of copying numbers into notes."
+        body="The home workspace already shows how EmTape is meant to be used: create a calculation, drop it into folders, search by title or totals, pin important work, and revisit saved histories instead of copying numbers into notes."
         bullets={[
           "Named calculations keep a visible total, timestamp, line count, and folder assignment.",
           "Search reaches titles, lines, expressions, and totals from the main workspace.",
@@ -317,7 +317,7 @@ export default function HomePage() {
       <SnapshotSection
         kicker="Reuse and shortcuts"
         title="Move fast with templates and finance tools built into the same app."
-        body="Instead of forcing every workflow into raw arithmetic, EMTape lets you save structures as templates and then jump to money-specific helpers when discount, tax, margin, commission, split payment, or loan math comes up."
+        body="Instead of forcing every workflow into raw arithmetic, EmTape lets you save structures as templates and then jump to money-specific helpers when discount, tax, margin, commission, split payment, or loan math comes up."
         bullets={[
           "Template categories already cover business, loans, budgeting, shopping, rent, and more.",
           "Custom templates can define rows, operators, defaults, and descriptions before saving.",
@@ -398,14 +398,14 @@ export default function HomePage() {
             </h2>
             <p className="mt-5 text-lg leading-8 text-muted">
               The current build shows a {CONFIG.featuredPlanName.toLowerCase()} plan, restore purchases,
-              unlimited saved histories, unlimited tape rows per history, and unlimited folders. EMTape
+              unlimited saved histories, unlimited tape rows per history, and unlimited folders. EmTape
               also presents support, privacy, and legal links directly inside settings.
             </p>
             <div className="mt-8 grid gap-4 md:grid-cols-2">
               <div className="rounded-2xl bg-surface-elevated px-5 py-4">
                 <div className="text-[11px] font-bold uppercase tracking-[0.18em] text-accent">Trial</div>
                 <p className="mt-2 text-sm leading-7 text-muted">
-                  New users may receive a {CONFIG.trialDays}-day trial with app access rules explained in-app and in the store flow.
+                  New users receive a {CONFIG.trialDays}-day trial with app access rules explained in-app and in the store flow.
                 </p>
               </div>
               <div className="rounded-2xl bg-surface-elevated px-5 py-4">

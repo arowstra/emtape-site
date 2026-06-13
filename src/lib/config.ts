@@ -5,7 +5,7 @@ export const CONFIG = {
   supportEmail: "arowoduyestrategy@gmail.com",
   governingJurisdiction: "Nigeria",
   ownerLegalName: "Oyinloye Sunday John",
-  trialDays: 15,
+  trialDays: 14,
   featuredPlanName: "Yearly",
   appStoreUrl: "",
   googlePlayUrl: "",

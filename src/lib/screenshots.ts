@@ -20,50 +20,50 @@ type Screenshot = {
 export const SCREENSHOTS = {
   actionsMenu: {
     src: actionsMenu,
-    alt: "EMTape calculation action menu with export, rename, duplicate, pin, folder, template, clear, and delete options.",
+    alt: "EmTape calculation action menu with export, rename, duplicate, pin, folder, template, clear, and delete options.",
   },
   createTemplate: {
     src: createTemplate,
-    alt: "EMTape create template modal with title, category, description, and row controls.",
+    alt: "EmTape create template modal with title, category, description, and row controls.",
   },
   darkTapeWages: {
     src: darkTapeWages,
-    alt: "EMTape dark mode tape showing wages and a percentage deduction on the calculator keypad screen.",
+    alt: "EmTape dark mode tape showing wages and a percentage deduction on the calculator keypad screen.",
   },
   documentsHome: {
     src: documentsHome,
-    alt: "EMTape documents workspace with new calculation, template, folder, search, and filter controls.",
+    alt: "EmTape documents workspace with new calculation, template, folder, search, and filter controls.",
   },
   documentsList: {
     src: documentsList,
-    alt: "EMTape document cards showing saved calculations, totals, timestamps, line counts, and folder status.",
+    alt: "EmTape document cards showing saved calculations, totals, timestamps, line counts, and folder status.",
   },
   financeTools: {
     src: financeTools,
-    alt: "EMTape finance tools sheet with discount, tax, profit margin, markup, commission, percentage change, split payment, and loan shortcuts.",
+    alt: "EmTape finance tools sheet with discount, tax, profit margin, markup, commission, percentage change, split payment, and loan shortcuts.",
   },
   settingsAppearance: {
     src: settingsAppearance,
-    alt: "EMTape settings screen with theme, accent color, tape density, font style, and calculation preferences.",
+    alt: "EmTape settings screen with theme, accent color, tape density, font style, and calculation preferences.",
   },
   settingsExport: {
     src: settingsExport,
-    alt: "EMTape export settings showing PDF style, expressions, footer options, and local storage with backup and restore.",
+    alt: "EmTape export settings showing PDF style, expressions, footer options, and local storage with backup and restore.",
   },
   settingsPlanLegal: {
     src: settingsPlanLegal,
-    alt: "EMTape settings showing privacy and security, support and legal links, yearly plan, saved histories, tape rows, folders, and restore purchases.",
+    alt: "EmTape settings showing privacy and security, support and legal links, yearly plan, saved histories, tape rows, folders, and restore purchases.",
   },
   tapeDebtRepayment: {
     src: tapeDebtRepayment,
-    alt: "EMTape debt repayment tape showing opening balance, payment made, interest, and the live calculator keypad.",
+    alt: "EmTape debt repayment tape showing opening balance, payment made, interest, and the live calculator keypad.",
   },
   tapeNegativeTotal: {
     src: tapeNegativeTotal,
-    alt: "EMTape tape with a red negative total after subtracting a larger amount from the running balance.",
+    alt: "EmTape tape with a red negative total after subtracting a larger amount from the running balance.",
   },
   templatesList: {
     src: templatesList,
-    alt: "EMTape template library with reusable finance layouts like daily sales, loan calculation, and profit and margin.",
+    alt: "EmTape template library with reusable finance layouts like daily sales, loan calculation, and profit and margin.",
   },
 } satisfies Record<string, Screenshot>;

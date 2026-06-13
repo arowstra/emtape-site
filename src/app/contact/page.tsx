@@ -6,7 +6,7 @@ import { SCREENSHOTS } from "@/lib/screenshots";
 export const metadata: Metadata = {
   title: "Contact",
   description:
-    "Contact EMTape for product questions, support requests, subscription help, and privacy-related enquiries.",
+    "Contact EmTape for product questions, support requests, subscription help, and privacy-related enquiries.",
 };
 
 export default function ContactPage() {
@@ -16,11 +16,11 @@ export default function ContactPage() {
         <div>
           <div className="section-kicker">Contact</div>
           <h1 className="mt-5 text-4xl font-bold tracking-tight sm:text-5xl">
-            Contact the team behind EMTape.
+            Contact the team behind EmTape.
           </h1>
           <p className="mt-5 max-w-3xl text-lg leading-8 text-muted">
             Use email for support requests, subscription questions, privacy enquiries, or rollout
-            questions about the EMTape calculator app and website.
+            questions about the EmTape calculator app and website.
           </p>
 
           <div className="mt-8 rounded-[2rem] border border-border/70 bg-surface p-8 shadow-[0_18px_50px_rgba(19,33,63,0.08)] md:p-10">

@@ -5,12 +5,12 @@ import { CONFIG } from "@/lib/config";
 export const metadata: Metadata = {
   title: "Privacy Policy",
   description:
-    "Learn how EMTape handles local calculation data, subscriptions, exports, backups, support requests, and limited diagnostic processing.",
+    "Learn how EmTape handles local calculation data, subscriptions, exports, backups, support requests, and limited diagnostic processing.",
 };
 
 const toc = [
   { id: "scope", label: "1. Scope" },
-  { id: "app-data", label: "2. Data You Create in EMTape" },
+  { id: "app-data", label: "2. Data You Create in EmTape" },
   { id: "service-data", label: "3. Subscription, Support, and Diagnostics" },
   { id: "exports", label: "4. Exports, Backups, and Sharing" },
   { id: "use", label: "5. How We Use Information" },
@@ -41,7 +41,7 @@ export default function PrivacyPage() {
       </div>
 
       <p className="mb-8 text-muted">
-        EMTape is designed as a calculator workspace, not an advertising platform. This policy
+        EmTape is designed as a calculator workspace, not an advertising platform. This policy
         explains how we handle information connected to the mobile app and this website.
       </p>
 
@@ -49,16 +49,16 @@ export default function PrivacyPage() {
         1. Scope
       </h2>
       <p className="mb-6 text-muted">
-        This policy applies to the EMTape website and the EMTape mobile app, including saved
+        This policy applies to the EmTape website and the EmTape mobile app, including saved
         calculation documents, templates, folders, settings, export options, subscription access,
         support contacts, and other app features made available in the current product.
       </p>
 
       <h2 id="app-data" className="mt-12 mb-4 text-2xl font-semibold">
-        2. Data You Create in EMTape
+        2. Data You Create in EmTape
       </h2>
       <p className="mb-6 text-muted">
-        EMTape is built around calculation content you create. Depending on how you use the app,
+        EmTape is built around calculation content you create. Depending on how you use the app,
         that may include:
       </p>
       <ul className="mb-6 text-muted">
@@ -118,7 +118,7 @@ export default function PrivacyPage() {
         4. Exports, Backups, and Sharing
       </h2>
       <p className="mb-6 text-muted">
-        EMTape includes export and backup-related settings. When you choose to export, back up,
+        EmTape includes export and backup-related settings. When you choose to export, back up,
         restore, print, or share content, the app may create files or pass content to locations,
         apps, or services you select through your device operating system.
       </p>
@@ -147,7 +147,7 @@ export default function PrivacyPage() {
         6. No Sale of Data or Ad Tracking
       </h2>
       <p className="mb-6 text-muted">
-        We do not sell personal information. We do not position EMTape as an ad-supported tracking
+        We do not sell personal information. We do not position EmTape as an ad-supported tracking
         product. We do not intentionally use third-party advertising networks to monetize your
         calculation history.
       </p>
@@ -176,7 +176,7 @@ export default function PrivacyPage() {
         8. Children&apos;s Privacy
       </h2>
       <p className="mb-6 text-muted">
-        EMTape is a general utility app and is not directed specifically to children under 13. If
+        EmTape is a general utility app and is not directed specifically to children under 13. If
         you believe a child has provided personal information to us directly through support or
         another channel, contact us so we can review the request.
       </p>
@@ -186,7 +186,7 @@ export default function PrivacyPage() {
       </h2>
       <p className="mb-6 text-muted">
         Service providers involved in subscriptions, diagnostics, communications, or website hosting
-        may process information in countries outside your own. By using EMTape, you understand that
+        may process information in countries outside your own. By using EmTape, you understand that
         these limited data flows may occur as part of operating the service.
       </p>
 
